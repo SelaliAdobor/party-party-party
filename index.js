@@ -76,7 +76,9 @@ function createPartyImage(inputFilename, outputStream, partyRadius, rotationSpee
         gif.on("readable", function() {
             gif.read();
         });
-
+        gif.on('end', function(blob) {
+            callback();
+        });
         function getPixelValue(arr, shape, x, y) {
             if (x < 0 || x >= shape[0] || y < 0 || y >= shape[1]) {
                 return -1;
